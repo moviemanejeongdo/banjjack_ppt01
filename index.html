@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>반짝반짝 반도체 메이커 - 기획 발표</title>
+  <!-- GSAP 모션 라이브러리 연결 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <!-- Inter Font 불러오기 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -624,15 +626,36 @@
     function showSlide(index) {
       if (index < 0 || index >= totalSlides) return;
       
+      // 현재 진행 중인 모든 자식 요소의 애니메이션 중단
+      gsap.killTweensOf(".slide *");
+      
       slides.forEach((slide, i) => {
         if (i === index) {
           slide.classList.add('active');
         } else {
           slide.classList.remove('active');
+          // 비활성 슬라이드 요소들의 오프셋 초기화
+          gsap.set(slide.querySelectorAll('.display-xl, .display-lg, .display-md, p, li, .card-m, .stage-card, .media-container, .index-item'), { opacity: 0, y: 35 });
         }
       });
       
       currentSlide = index;
+      
+      // 활성 슬라이드의 내부 요소들 가져오기
+      const activeSlide = slides[index];
+      const elementsToAnimate = activeSlide.querySelectorAll('.display-xl, .display-lg, .display-md, p, li, .card-m, .stage-card, .media-container, .index-item');
+      
+      // GSAP 부드러운 위방향 Reveal 스태거 등장 연출
+      gsap.fromTo(elementsToAnimate, 
+        { opacity: 0, y: 35 }, 
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.8, 
+          ease: "power4.out", 
+          stagger: 0.12 
+        }
+      );
       
       // 8대 공정 슬라이드 진입 시 캐러셀 초기화
       if (currentSlide === 6) {
@@ -647,9 +670,24 @@
     function showStageGroup(groupIndex) {
       currentStageGroup = groupIndex;
       const groups = document.querySelectorAll('.stages-grid');
+      
       groups.forEach((group, i) => {
         if (i === groupIndex) {
           group.classList.add('active');
+          // 그룹 내부의 카드들 개별 트랜지션
+          const cards = group.querySelectorAll('.stage-card');
+          gsap.killTweensOf(cards);
+          gsap.fromTo(cards, 
+            { opacity: 0, scale: 0.95, y: 20 }, 
+            { 
+              opacity: 1, 
+              scale: 1, 
+              y: 0, 
+              duration: 0.6, 
+              ease: "power3.out", 
+              stagger: 0.08 
+            }
+          );
         } else {
           group.classList.remove('active');
         }
