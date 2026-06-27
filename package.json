@@ -1,0 +1,24 @@
+{
+  "name": "banjjack_ppt01",
+  "version": "1.0.0",
+  "description": "이 레포지토리는 반짝 반도체 메이커 프로젝트의 기획발표자료 웹 프레젠테이션 소스 코드입니다.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "bugs": {
+    "url": "https://github.com/moviemanejeongdo/banjjack_ppt01/issues"
+  },
+  "homepage": "https://github.com/moviemanejeongdo/banjjack_ppt01#readme",
+  "dependencies": {
+    "motion": "^12.42.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
+    "vite": "^8.1.0"
+  }
+}

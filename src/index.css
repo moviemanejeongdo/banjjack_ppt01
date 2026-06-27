@@ -1,0 +1,363 @@
+/* BMW M Design Tokens */
+:root {
+  --color-canvas: #000000;
+  --color-primary: #ffffff;
+  --color-ink: #ffffff;
+  --color-body: #bbbbbb;
+  --color-body-strong: #e6e6e6;
+  --color-muted: #7e7e7e;
+  --color-hairline: #3c3c3c;
+  --color-surface-card: #1a1a1a;
+  --color-surface-soft: #0d0d0d;
+  
+  /* M Tricolor */
+  --m-blue-light: #0066b1;
+  --m-blue-dark: #1c69d4;
+  --m-red: #e22718;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* M Tricolor Top Bar */
+.m-stripe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  display: flex;
+  z-index: 1000;
+}
+.m-stripe .blue-light { flex: 1; background-color: var(--m-blue-light); }
+.m-stripe .blue-dark { flex: 1; background-color: var(--m-blue-dark); }
+.m-stripe .red { flex: 1; background-color: var(--m-red); }
+
+/* Presentation Header & Navigation */
+header {
+  position: fixed;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  padding: 0 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-hairline);
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 900;
+}
+.header-logo {
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.header-logo span {
+  color: var(--m-red);
+}
+.header-nav {
+  font-size: 24px;
+  color: var(--color-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Main Slide Container */
+.presentation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slides */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 120px 60px 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* framer-motion으로 슬라이드 페이드인을 제어할 예정이므로 
+     기존 opacity: 0; pointer-events: none; transition 등은 
+     React 컴포넌트 렌더링 방식에 맞추어 보완합니다. */
+  z-index: 10;
+}
+
+.slide.active {
+  z-index: 20;
+}
+
+/* Typography Settings (BMW M Editorial Signature) */
+.display-xl {
+  font-size: 140px;
+  font-weight: 700;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.display-lg {
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  border-left: 6px solid var(--m-blue-dark);
+  padding-left: 24px;
+  margin-bottom: 24px;
+}
+.display-md {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+.body-light {
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+.body-strong {
+  color: var(--color-body-strong);
+  font-weight: 400;
+}
+
+/* Layout Elements */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  height: 100%;
+  max-height: calc(100vh - 200px);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1.1fr 0.95fr 0.95fr;
+  gap: 32px;
+  align-items: center;
+  height: 100%;
+  max-height: calc(100vh - 200px);
+}
+
+.card-m {
+  background-color: var(--color-surface-card);
+  border-radius: 0px; /* Sharp corners */
+  padding: 32px;
+  border: 1px solid var(--color-hairline);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Index (Interactive Menu) Page */
+.index-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+.index-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-hairline);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.index-item:hover {
+  background-color: var(--color-surface-card);
+  border-color: var(--color-primary);
+  transform: translateX(10px);
+}
+.index-item .index-num {
+  color: var(--m-red);
+  margin-right: 16px;
+}
+.index-item .index-arrow {
+  font-size: 36px;
+}
+
+/* Images */
+.media-container {
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 240px);
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-hairline);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.media-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Lists */
+ul.m-list {
+  list-style: none;
+}
+ul.m-list li {
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--color-body);
+  margin-bottom: 16px;
+  padding-left: 30px;
+  position: relative;
+  line-height: 1.5;
+}
+ul.m-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18px;
+  width: 10px;
+  height: 3px;
+  background-color: var(--m-red);
+}
+
+/* 8 Stages Grid */
+.stages-grid {
+  display: none;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+  margin-top: 12px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.stages-grid.active {
+  display: grid;
+  opacity: 1;
+}
+.stage-card {
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-hairline);
+  padding: 24px 32px;
+  transition: border-color 0.3s ease;
+}
+.stage-card:hover {
+  border-color: var(--color-primary);
+}
+.stage-num {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--m-blue-light);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.stage-title {
+  font-size: 48px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.stage-desc {
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--color-muted);
+  line-height: 1.45;
+}
+/* Group 2 (4~8 Stages) Custom Style for 3 columns and optimal scale */
+#stage-group-2 {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+#stage-group-2 .stage-card {
+  padding: 16px 24px;
+}
+#stage-group-2 .stage-title {
+  font-size: 36px;
+}
+#stage-group-2 .stage-desc {
+  font-size: 26px;
+  line-height: 1.4;
+}
+
+/* Definition Layout */
+.def-box {
+  margin-top: 24px;
+  border-left: 4px solid var(--m-blue-dark);
+  padding-left: 20px;
+  margin-bottom: 24px;
+}
+
+/* Footer & Controls Info */
+footer.controls-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  padding: 0 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--color-hairline);
+  background-color: var(--color-canvas);
+  font-size: 20px;
+  color: var(--color-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  z-index: 900;
+}
+.controls-indicator span {
+  background-color: var(--color-surface-card);
+  padding: 4px 8px;
+  border: 1px solid var(--color-hairline);
+  color: var(--color-primary);
+  margin-right: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .grid-2, .grid-3 {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .display-xl { font-size: 40px; }
+  .display-lg { font-size: 28px; }
+  .stages-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
