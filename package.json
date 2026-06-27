@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "bugs": {
     "url": "https://github.com/moviemanejeongdo/banjjack_ppt01/issues"
   },
-  "homepage": "https://github.com/moviemanejeongdo/banjjack_ppt01#readme",
+  "homepage": "https://moviemanejeongdo.github.io/banjjack_ppt01/",
   "dependencies": {
     "motion": "^12.42.0",
     "react": "^19.2.7",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.3",
+    "gh-pages": "^6.3.0",
     "vite": "^8.1.0"
   }
 }
